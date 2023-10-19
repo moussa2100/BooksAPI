@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ModelClassLibrary.Infra;
+using ModelClassLibrary.Repository;
+using ModelClassLibrary.Repository.IRepository;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +13,8 @@ builder.Host.UseSerilog();
 
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<AppDbContext>( opt=> opt.UseSqlServer("Data Source=144.76.172.244;Initial Catalog=booksdb;Persist Security Info=True;User ID=sa;Password=Aa12121988;TrustServerCertificate=true") );
+builder.Services.AddDbContext<AppDbContext>( opt=> opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ));
+builder.Services.AddScoped<IBookRepository, BookRepository>();
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

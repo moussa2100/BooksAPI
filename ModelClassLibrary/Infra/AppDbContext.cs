@@ -10,12 +10,12 @@ namespace ModelClassLibrary.Infra
 {
     public class AppDbContext : DbContext
     {
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Author>().HasData( new Author { AuthorId=1, Name="Robin Sharma"});
-            modelBuilder.Entity<Category>().HasData(new Category {CategoryId=1, Name="Self Development"  });
-            modelBuilder.Entity<Book>().HasData( new Book { BookId=1, Title="book1", AuthorId=1,CategoryId=1 } );
-        }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Author>().HasData( new Author { AuthorId=1, Name="Robin Sharma"});
+        //    modelBuilder.Entity<Category>().HasData(new Category {CategoryId=1, Name="Self Development"  });
+        //    modelBuilder.Entity<Book>().HasData( new Book { BookId=1, Title="book1", AuthorId=1,CategoryId=1 } );
+        //}
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {

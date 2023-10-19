@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 using ModelClassLibrary.Infra;
 using ModelClassLibrary.Model;
 
@@ -7,12 +6,12 @@ namespace WebApplication61.Controllers
 {
     [Route("/books")]
     [ApiController]
-    public class AuthorController : ControllerBase
+    public class BookController : ControllerBase
     {
         private readonly AppDbContext context;
         private readonly ILogger<Book> logger;
 
-        public AuthorController(AppDbContext context,ILogger<Book> logger)
+        public BookController(AppDbContext context,ILogger<Book> logger)
         {
             this.context = context;
             this.logger = logger;
@@ -22,10 +21,7 @@ namespace WebApplication61.Controllers
         [ProducesResponseType(200)]
         public ActionResult<IEnumerable<Book>> GetBooks()
         {
-            List<Book> books = new List<Book>()
-            {
-                new Book { Title="title",BookId=1,AuthorId=1,CategoryId=1 }
-            };
+            List<Book> books = context.Books.ToList();
 
 
             return Ok(books);
